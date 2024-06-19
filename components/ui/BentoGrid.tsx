@@ -1,15 +1,10 @@
 "use client"
-
 import {cn} from "@/utils/cn";
 import {BackgroundGradientAnimation} from "@/components/ui/GradientBG";
-import {Globe} from "@/components/ui/Globe";
 import { GlobeDemo } from "@/components/ui/GridGlobe";
-import {it} from "node:test";
-import Lottie from "react-lottie";
 import React, {useState} from "react";
-import animationData from "@/data/confetti.json";
 import MagicButton from "@/components/ui/MagicButton";
-import {LucideAtSign, LucideCopy, LucideSend} from "lucide-react";
+import {LucideSend} from "lucide-react";
 import {SparklesCore} from "@/components/ui/sparkles";
 
 export const BentoGrid = ({
@@ -147,14 +142,14 @@ export const BentoGridItem = ({
                     {id === 6 && (
                         <div className="mt-5 relative">
                             <div className={`absolute -bottom-5 right-0`}>
-                                <Lottie options={{
-                                    loop: copied,
-                                    autoplay: copied,
-                                    animationData: animationData,
-                                    rendererSettings: {
-                                        preserveAspectRatio: "xMidYMid slice",
-                                    }
-                                }}/>
+                                {/*<Lottie options={{*/}
+                                {/*    loop: copied,*/}
+                                {/*    autoplay: copied,*/}
+                                {/*    animationData: animationData,*/}
+                                {/*    rendererSettings: {*/}
+                                {/*        preserveAspectRatio: "xMidYMid slice",*/}
+                                {/*    }*/}
+                                {/*}}/>*/}
                             </div>
                             <a href="mailto:af180902@gmail.com">
 

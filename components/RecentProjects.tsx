@@ -150,7 +150,8 @@ const RecentProjects = () => {
                 Some of my {" "}
                 <span className="text-purple">Previous Projects</span>
             </h1>
-            <div className="h-[40rem] lg:h-[50rem] [perspective:1000px] flex flex-col max-w-5xl mx-auto w-full items-start justify-start my-4">
+            <div
+                className="h-[40rem] lg:h-[50rem] [perspective:1000px] flex flex-col max-w-5xl mx-auto w-full items-start justify-start my-4">
                 <Tabs
                     tabs={tabs}
                     containerClassName="flex justify-center"
