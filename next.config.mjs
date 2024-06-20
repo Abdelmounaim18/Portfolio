@@ -5,8 +5,12 @@ const nextConfig = {
         ignoreBuildErrors: true
     },
     images: {
-        domains: [
-            "api.microlink.io", // Microlink Image Preview
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "api.microlink.io",
+                pathname: '**',
+            },
         ],
     },
 };
