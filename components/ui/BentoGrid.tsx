@@ -2,10 +2,11 @@
 import {cn} from "@/utils/cn";
 import {BackgroundGradientAnimation} from "@/components/ui/GradientBG";
 import { GlobeDemo } from "@/components/ui/GridGlobe";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import MagicButton from "@/components/ui/MagicButton";
 import {LucideSend} from "lucide-react";
 import {SparklesCore} from "@/components/ui/sparkles";
+import {isSafari} from "@floating-ui/react/utils";
 
 export const BentoGrid = ({
                               className,
@@ -47,12 +48,26 @@ export const BentoGridItem = ({
     spareImg?: string;
     id: number;
 }) => {
-
     const [copied, setCopied] = useState(false);
     const handleCopy = () => {
         navigator.clipboard.writeText("af180902@gmail.com");
         setCopied(true);
     }
+
+    const [isSafari, setIsSafari] = useState(false);
+
+    useEffect(() => {
+        // Detect if the browser is Safari
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isSafariBrowser = /safari/.test(userAgent) && !/chrome/.test(userAgent);
+        setIsSafari(isSafariBrowser);
+        console.log("Is Safari: ", isSafariBrowser);
+    }, []);
+
+
+
+
+
 
     return (
         <div
@@ -141,21 +156,16 @@ export const BentoGridItem = ({
 
                     {id === 6 && (
                         <div className="mt-5 relative">
-                            <div className={`absolute -bottom-5 right-0`}>
-                                {/*<Lottie options={{*/}
-                                {/*    loop: copied,*/}
-                                {/*    autoplay: copied,*/}
-                                {/*    animationData: animationData,*/}
-                                {/*    rendererSettings: {*/}
-                                {/*        preserveAspectRatio: "xMidYMid slice",*/}
-                                {/*    }*/}
-                                {/*}}/>*/}
-                            </div>
+
                             <a href="mailto:af180902@gmail.com">
 
-                            <MagicButton title={copied ? "Sending..." : "Send a message"}
-                                         icon={<LucideSend size={20}/>} position="left" otherClasses="`bg-[#161a31]"
-                                         handleClick={handleCopy}/>
+                                {isSafari ? (
+                                    <button onClick={handleCopy} className="btn border border-white p-2 rounded-lg inline-flex h-full w-full cursor-pointer items-center justify-center bg-slate-950 px-7 text-sm font-medium text-white  gap-2"><LucideSend size={20} /> Send a message</button>
+                                ) : (
+                                    <MagicButton title={copied ? "Sending..." : "Send a message"}
+                                                 icon={<LucideSend size={20} />} position="left" otherClasses="`bg-[#161a31]"
+                                                 handleClick={handleCopy} />
+                                )}
                             </a>
 
                         </div>

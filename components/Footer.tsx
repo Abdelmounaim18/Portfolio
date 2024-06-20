@@ -1,4 +1,5 @@
-import React from 'react';
+"use client"
+import React, {useEffect, useState} from 'react';
 import {SparklesCore} from "@/components/ui/sparkles";
 import {FlipWords} from "@/components/ui/flip-words";
 import {socialMedia, words} from "@/data";
@@ -6,6 +7,16 @@ import MagicButton from "@/components/ui/MagicButton";
 import {LucideAtSign, LucideMail, LucideSend} from "lucide-react";
 
 const Footer = () => {
+    const [isSafari, setIsSafari] = useState(false);
+
+    useEffect(() => {
+        // Detect if the browser is Safari
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isSafariBrowser = /safari/.test(userAgent) && !/chrome/.test(userAgent);
+        setIsSafari(isSafariBrowser);
+        console.log("Is Safari: ", isSafariBrowser);
+    }, []);
+
     return (
         <footer className="w-full pt-20 pb-10" id="contact">
 
@@ -20,7 +31,11 @@ const Footer = () => {
                 </h1>
                 <p className="text-white-200 md:mt-10 my-5 text-center">Feel free to reach out</p>
                 <a href="mailto:af180902@gmail.com">
+                    {isSafari ? (
+                        <button className="btn border border-white p-2 rounded-lg inline-flex h-full w-full cursor-pointer items-center justify-center bg-slate-950 px-7 text-sm font-medium text-white  gap-2"><LucideSend size={20} /> Send a message</button>
+                    ) : (
                     <MagicButton title="Send a message" icon={<LucideSend size={20}/>} position="left"/>
+                        )}
                 </a>
             </div>
 
